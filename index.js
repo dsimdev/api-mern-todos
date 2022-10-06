@@ -16,9 +16,10 @@ app.get("/", (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-
+mongodb =
+  "mongodb+srv://dmndev:030390@cluster0.wqvo2xu.mongodb.net/todos-database?retryWrites=true&w=majority";
 mongoose
-  .connect(process.env.mongodb, {
+  .connect(mongodb, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   })
