@@ -9,7 +9,7 @@ dotenv.config();
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-app.use("/todos", todoRoute)
+app.use("/todos", todoRoute);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the server");
@@ -18,9 +18,11 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 mongoose
-  .connect(process.env.mongodb)
+  .connect(process.env.mongodb, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  })
   .then(() => {
-    console.log(`Server is running on http://localhost:${PORT}`);
     app.listen(PORT);
   })
   .catch((err) => console.log(err));
